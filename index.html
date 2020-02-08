@@ -15,8 +15,8 @@
 	            var data = JSON.parse(request.responseText);
 	            var price_usd = Number(data[0].price_usd);
 
-	            var total_btc = document.getElementById("total_btc");
-	            var usd_sales = document.getElementById("usd_sales");
+	            var total_btc = document.getElementById("total_btc").innerText;
+	            var usd_sales = document.getElementById("usd_sales").innerText;
 	            var total_usd = total_btc * price_usd;
 	            document.getElementById("total_usd").innerText = total_usd;
 	            document.getElementById("gains_missed").innerText = total_used - usd_sales;
@@ -28,14 +28,13 @@
 	</script>
   </head>
   <body onload="addBitcoin()">
-    <h1 class="party">US Marshals Bitcoin Auctions</h1>
+    <h1>US Marshals Bitcoin Auctions</h1>
     <table class="compatibility">
 	  <tr>
 	    <th style="text-align:center">Auction Date</th>
 	    <th style="text-align:center">BTC Sold</th>
 	    <th style="text-align:center">USD Acquired</th>
 	    <th style="text-align:center">News Article</th>
-	    <th>Price</th>
 	  </tr>
 	  <tr>
 	    <td>27-6-2014</td>
@@ -86,6 +85,7 @@
 	    <td><a href="https://www.usmarshals.gov/assets/2020/febbitcoinauction/">US Marchals Announcement</a></td>
 	  </tr>
 	</table>
+	<br/>
 Total BTC seized and sold: <span id="total_btc">185,230</span><br/>
 Total USD gained from sales: $<span id="usd_sales">151,440,000</span><br/>
 Current USD value of all sold BTC: <span id="total_usd">???</span><br/>
