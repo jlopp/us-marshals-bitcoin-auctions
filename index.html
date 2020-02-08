@@ -17,9 +17,10 @@
 
 	            var total_btc = document.getElementById("total_btc").innerText;
 	            var usd_sales = document.getElementById("usd_sales").innerText;
+	            alert(total_btc);alert(usd_sales);
 	            var total_usd = total_btc * price_usd;
 	            document.getElementById("total_usd").innerText = total_usd;
-	            document.getElementById("gains_missed").innerText = total_used - usd_sales;
+	            document.getElementById("gains_missed").innerText = total_usd - usd_sales;
 	        }
 	    };
 
