@@ -1,36 +1,9 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>US Marshals Bitcoin Auctions</title>
-    <link href="site.css" media="screen" rel="stylesheet" type="text/css" />
-    <script src="site.js" type="text/javascript"></script>
-    <script>
-    	function currencyFormat(num) {
-  			return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-		}
-
-		// when the frame has loaded then call getData()
-		function addBitcoin() {
-		    var request = new XMLHttpRequest();
-		    request.open('GET', 'https://api.coinmarketcap.com/v1/ticker/bitcoin/', true);
-
-		    request.onload = function() {
-		        if (request.status >= 200 && request.status < 400) {
-		            var data = JSON.parse(request.responseText);
-		            var price_usd = Number(data[0].price_usd);
-		            var total_btc = Number(document.getElementById("total_btc").innerText.replace(/,/g, ''));
-		            var usd_sales = Number(document.getElementById("usd_sales").innerText.replace(/,/g, ''));
-		            var total_usd = total_btc * price_usd;
-		            document.getElementById("total_usd").innerText = currencyFormat(total_usd);
-		            document.getElementById("gains_missed").innerText = currencyFormat(total_usd - usd_sales);
-		        }
-		    };
-
-		    request.send();
-		};
-	</script>
-  </head>
-  <body onload="addBitcoin()">
+---
+layout: page
+title: Metal Bitcoin Seed Storage Reviews
+subtitle: Stress tests and reviews of seed storage devices.
+use-site-title: true
+---
     <h1>US Marshals Bitcoin Auctions</h1>
     <table class="compatibility">
 	  <tr>
@@ -95,5 +68,26 @@
 		Current USD value of all sold BTC: <span id="total_usd">???</span><br/>
 		Potential USD gains missed: <span id="gains_missed">???</span><br/>
 	</p>
-  </body>
-</html>
+
+    <script>
+    	function currencyFormat(num) {
+  			return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+		}
+
+	    var request = new XMLHttpRequest();
+	    request.open('GET', 'https://api.coinmarketcap.com/v1/ticker/bitcoin/', true);
+
+	    request.onload = function() {
+	        if (request.status >= 200 && request.status < 400) {
+	            var data = JSON.parse(request.responseText);
+	            var price_usd = Number(data[0].price_usd);
+	            var total_btc = Number(document.getElementById("total_btc").innerText.replace(/,/g, ''));
+	            var usd_sales = Number(document.getElementById("usd_sales").innerText.replace(/,/g, ''));
+	            var total_usd = total_btc * price_usd;
+	            document.getElementById("total_usd").innerText = currencyFormat(total_usd);
+	            document.getElementById("gains_missed").innerText = currencyFormat(total_usd - usd_sales);
+	        }
+	    };
+
+	    request.send();
+	</script>
