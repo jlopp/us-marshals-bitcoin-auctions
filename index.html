@@ -7,7 +7,7 @@
     <script src="./midnight/assets/js/respond.js"></script>
     <script>
     	function currencyFormat(num) {
-  			return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+  			return '$' + num.toFixed().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 		}
 
 		// when the frame has loaded then call getData()
