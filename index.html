@@ -13,12 +13,12 @@
 		// when the frame has loaded then call getData()
 		function addBitcoin() {
 		    var request = new XMLHttpRequest();
-		    request.open('GET', 'https://api.coinmarketcap.com/v1/ticker/bitcoin/', true);
+		    request.open('GET', 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd', true);
 
 		    request.onload = function() {
 		        if (request.status >= 200 && request.status < 400) {
 		            var data = JSON.parse(request.responseText);
-		            var price_usd = Number(data[0].price_usd);
+		            var price_usd = Number(data.bitcoin.usd);
 		            var total_btc = Number(document.getElementById("total_btc").innerText.replace(/,/g, ''));
 		            var usd_sales = Number(document.getElementById("usd_sales").innerText.replace(/,/g, ''));
 		            var total_usd = total_btc * price_usd;
