@@ -2,176 +2,183 @@
 <html>
   <head>
     <title>US Government Seized Bitcoin Tracker</title>
-	<link rel="stylesheet" href="./midnight/assets/css/style.css?v=b1d65216c39e1cb350e6309b09630d3befa1147c">
+    <link rel="stylesheet" href="./midnight/assets/css/style.css?v=b1d65216c39e1cb350e6309b09630d3befa1147c">
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
     <script src="./midnight/assets/js/respond.js"></script>
     <script>
-    	function currencyFormat(num) {
-  			return '$' + num.toFixed().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
-		}
+      function currencyFormat(num) {
+        return '$' + num.toFixed().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+      }
 
-		// when the frame has loaded then call getData()
-		function addBitcoin() {
-		    var request = new XMLHttpRequest();
-		    request.open('GET', 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd', true);
+      // when the frame has loaded then call getData()
+      function addBitcoin() {
+        var request = new XMLHttpRequest();
+        request.open('GET', 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd', true);
 
-		    request.onload = function() {
-		        if (request.status >= 200 && request.status < 400) {
-		            var data = JSON.parse(request.responseText);
-		            var price_usd = Number(data.bitcoin.usd);
-		            var total_btc = Number(document.getElementById("total_btc").innerText.replace(/,/g, ''));
-		            var usd_sales = Number(document.getElementById("usd_sales").innerText.replace(/,/g, ''));
-		            var held_btc = Number(document.getElementById("held_btc").innerText.replace(/,/g, ''));
-		            var total_usd = total_btc * price_usd;
-		            document.getElementById("total_usd").innerText = currencyFormat(total_usd);
-		            document.getElementById("gains_missed").innerText = currencyFormat(total_usd - usd_sales);
-		            document.getElementById("held_usd").innerText = currencyFormat(held_btc * price_usd);
-		        }
-		    };
+        request.onload = function() {
+          if (request.status >= 200 && request.status < 400) {
+            var data = JSON.parse(request.responseText);
+            var price_usd = Number(data.bitcoin.usd);
+            var total_btc = Number(document.getElementById("total_btc").innerText.replace(/,/g, ''));
+            var usd_sales = Number(document.getElementById("usd_sales").innerText.replace(/,/g, ''));
+            var held_btc = Number(document.getElementById("held_btc").innerText.replace(/,/g, ''));
+            var total_usd = total_btc * price_usd;
+            document.getElementById("total_usd").innerText = currencyFormat(total_usd);
+            document.getElementById("gains_missed").innerText = currencyFormat(total_usd - usd_sales);
+            document.getElementById("held_usd").innerText = currencyFormat(held_btc * price_usd);
+          }
+        };
 
-		    request.send();
-		};
-	</script>
+        request.send();
+      };
+    </script>
   </head>
   <body onload="addBitcoin()">
-    <h1 style="width:700px;margin:auto;padding-top:20px;padding-bottom:40px">US Government Seized Bitcoin Tracker</h1>
+    <h1 style="text-align:center;padding-top:20px;padding-bottom:40px">US Government Seized Bitcoin Tracker</h1>
+
+    <h2 style="width:860px;margin:0 auto 10px">Seized Bitcoin Sales</h2>
     <table class="compatibility" style="width:860px;margin:auto">
-	  <tr>
-	    <th>Date</th>
-	    <th style="text-align:right">BTC Sold</th>
-	    <th style="text-align:right">USD Acquired</th>
-	    <th>News Article</th>
-	  </tr>
-	  <tr>
-	    <td>27-06-2014</td>
-	    <td style="text-align:right">29,657</td>
-	    <td style="text-align:right">$18,740,000</td>
-	    <td><a href="https://www.newsbtc.com/2019/01/13/tim-draper-18-million-first-bitcoin-batch/">Tim Draper Wins First Bitcoin Batch</a></td>
-	  </tr>
-	  <tr>
-	    <td>04-12-2014</td>
-	    <td style="text-align:right">50,000</td>
-	    <td style="text-align:right">$19,000,000</td>
-	    <td><a href="https://techcrunch.com/2014/12/05/us-marshals-complete-second-auction-of-silk-road-bitcoin/">US Marshals Complete Second Auction</a></td>
-	  </tr>
-	  <tr>
-	    <td>01-03-2015</td>
-	    <td style="text-align:right">50,000</td>
-	    <td style="text-align:right">$13,500,000</td>
-	    <td><a href="https://www.coindesk.com/us-marshals-auction-50000-bitcoins-march">US Marshals March Auction</a></td>
-	  </tr>
-	  <tr>
-	    <td>05-11-2015</td>
-	    <td style="text-align:right">44,341</td>
-	    <td style="text-align:right">$14,600,000</td>
-	    <td><a href="https://www.coindesk.com/us-government-to-sell-44000-btc-in-final-silk-road-auction">Final Silk Road Auction</a></td>
-	  </tr>
-	  <tr>
-	    <td>22-08-2016</td>
-	    <td style="text-align:right">2,719</td>
-	    <td style="text-align:right">$1,600,000</td>
-	    <td><a href="https://bravenewcoin.com/insights/us-marshals-announce-16-million-bitcoin-auction">US Marshals announce $1.6M Auction</a></td>
-	  </tr>
-	  <tr>
-	    <td>22-01-2018</td>
-	    <td style="text-align:right">3,813</td>
-	    <td style="text-align:right">$42,000,000</td>
-	    <td><a href="https://www.usmarshals.gov/assets/2018/bitcoinauction/index.html">US Marshals Announcement</a></td>
-	  </tr>
-	  <tr>
-	    <td>05-11-2018</td>
-	    <td style="text-align:right">660</td>
-	    <td style="text-align:right">$4,000,000</td>
-	    <td><a href="https://www.forbes.com/sites/rogeraitken/2018/10/19/u-s-marshals-set-to-auction-bitcoins-worth-4-2m-next-month/">US Marshals set to Auction bitcoins worth $4M</a></td>
-	  </tr>
-	  <tr>
-	    <td>01-02-2020</td>
-	    <td style="text-align:right">4,040</td>
-	    <td style="text-align:right">$38,000,000</td>
-	    <td><a href="https://www.usmarshals.gov/assets/2020/febbitcoinauction/">US Marshals Announcement</a></td>
-	  </tr>
-	  <tr>
-	    <td>03-17-2021</td>
-	    <td style="text-align:right">0.7501</td>
-	    <td style="text-align:right">$53,104</td>
-	    <td><a href="https://archive.is/nrchD">GSA Auction</a></td>
-	  </tr>
-	  <tr>
-	    <td>07-01-2021</td>
-	    <td style="text-align:right">500</td>
-	    <td style="text-align:right">$19,200,000</td>
-	    <td><a href="https://archive.is/pqs54">Ohio DOJ Auction</a></td>
-	  </tr>
-	  <tr>
-	    <td>03-14-2023</td>
-	    <td style="text-align:right">9,861</td>
-	    <td style="text-align:right">$215,700,000</td>
-	    <td><a href="https://archive.is/MUZfP">Coinbase Sale of BTC seized from Silk Road hacker</a></td>
-	  </tr>
-	  <tr>
-	  </tr>
-	  <tr>
-	    <th colspan="5" style="text-align:center">Seized Bitcoin Still Held</th>
-	  </tr>
- 	  <tr>
-	    <th>Date Seized</th>
-	    <th style="text-align:right">BTC Seized</th>
-	    <th>News Article</th>
-	  </tr>
-	  <tr>
-	    <td>11-2020</td>
-	    <td style="text-align:right">69,370</td>
-	    <td><a href="https://storage.courtlistener.com/recap/gov.uscourts.cand.368440/gov.uscourts.cand.368440.1.0.pdf">Silk Road hacker &quot;Individual X&quot; seizure</a></td>
-	  </tr>
-	  <tr>
-	    <td>08-2021</td>
-	    <td style="text-align:right">4,400</td>
-	    <td><a href="https://www.justice.gov/opa/pr/government-forfeits-over-400m-assets-tied-helix-darknet-cryptocurrency-mixer">Helix darknet mixer forfeiture</a></td>
-	  </tr>
-	  <tr>
-	    <td>11-2021</td>
-	    <td style="text-align:right">41,819</td>
-	    <td><a href="https://www.justice.gov/usao-sdny/pr/us-attorney-announces-historic-336-billion-cryptocurrency-seizure-and-conviction">Silk Road theft, James Zhong (51,680 seized, 9,861 sold in 2023)</a></td>
-	  </tr>
-	  <tr>
-	    <td>2022</td>
-	    <td style="text-align:right">94,636</td>
-	    <td><a href="https://www.coindesk.com/policy/2022/02/08/us-officials-seize-bitcoin-from-2016-bitfinex-hack/">2016 Bitfinex hack seizure</a></td>
-	  </tr>
-	  <tr>
-	    <td>2022</td>
-	    <td style="text-align:right">2,814</td>
-	    <td><a href="https://www.justice.gov/usao-ndil/pr/co-creator-dark-web-marketplace-sentenced-40-years-federal-prison">Empire Market forfeiture</a></td>
-	  </tr>
-	  <tr>
-	    <td>01-2024</td>
-	    <td style="text-align:right">2,933</td>
-	    <td><a href="https://decrypt.co/214309/us-sell-117-million-bitcoin-seized-silk-road-drug-trafficker">XANAXMAN darknet vendor forfeiture</a></td>
-	  </tr>
-	  <tr>
-	    <td>11-2024</td>
-	    <td style="text-align:right">1,354</td>
-	    <td><a href="https://www.justice.gov/usao-dc/pr/operator-bitcoin-fog-sentenced-more-12-years-prison-running-notorious-darknet">Bitcoin Fog mixer forfeiture</a></td>
-	  </tr>
-	  <tr>
-	    <td>10-2025</td>
-	    <td style="text-align:right">127,271</td>
-	    <td><a href="https://www.justice.gov/opa/pr/chairman-prince-group-indicted-operating-cambodian-forced-labor-scam-compounds-engaged">Prince Group scam seizure</a></td>
-	  </tr>
-	</table>
-	<br/>
-	<p style="width:860px;margin:auto;font-size:20px">
-		Total BTC sold: <span id="total_btc">195,591.7501</span><br/>
-		Total USD gained from sales: $<span id="usd_sales">386,393,104</span><br/>
-		Current USD value of all sold BTC: <span id="total_usd">???</span><br/>
-		Potential USD gains missed: <span id="gains_missed">???</span><br/>
-		<br/>
-		Total BTC seized but not yet sold: <span id="held_btc">354,458</span><br/>
-		Current USD value of held BTC: <span id="held_usd">???</span><br/>
-		<br/>
-	</p>
-	<p style="width:860px;margin:auto;font-size:16px">
-		Executive Order 14233, <a href="https://www.federalregister.gov/documents/2025/03/11/2025-03992/establishment-of-the-strategic-bitcoin-reserve-and-united-states-digital-asset-stockpile">Establishment of the Strategic Bitcoin Reserve and United States Digital Asset Stockpile</a>, signed March 6, 2025, directs that bitcoin forfeited by the federal government be held in the Strategic Bitcoin Reserve rather than sold, with only narrow exceptions (such as returning assets to identifiable victims or use for law enforcement operations). This ended the long-standing practice of auctioning seized bitcoin, which is why no government bitcoin sales are recorded after March 2023.
-	</p>
+      <tr>
+        <th>Date</th>
+        <th style="text-align:right">BTC Sold</th>
+        <th style="text-align:right">USD Acquired</th>
+        <th>News Article</th>
+      </tr>
+      <tr>
+        <td>27-06-2014</td>
+        <td style="text-align:right">29,657</td>
+        <td style="text-align:right">$18,740,000</td>
+        <td><a href="https://www.newsbtc.com/2019/01/13/tim-draper-18-million-first-bitcoin-batch/">Tim Draper Wins First Bitcoin Batch</a></td>
+      </tr>
+      <tr>
+        <td>04-12-2014</td>
+        <td style="text-align:right">50,000</td>
+        <td style="text-align:right">$19,000,000</td>
+        <td><a href="https://techcrunch.com/2014/12/05/us-marshals-complete-second-auction-of-silk-road-bitcoin/">US Marshals Complete Second Auction</a></td>
+      </tr>
+      <tr>
+        <td>01-03-2015</td>
+        <td style="text-align:right">50,000</td>
+        <td style="text-align:right">$13,500,000</td>
+        <td><a href="https://www.coindesk.com/us-marshals-auction-50000-bitcoins-march">US Marshals March Auction</a></td>
+      </tr>
+      <tr>
+        <td>05-11-2015</td>
+        <td style="text-align:right">44,341</td>
+        <td style="text-align:right">$14,600,000</td>
+        <td><a href="https://www.coindesk.com/us-government-to-sell-44000-btc-in-final-silk-road-auction">Final Silk Road Auction</a></td>
+      </tr>
+      <tr>
+        <td>22-08-2016</td>
+        <td style="text-align:right">2,719</td>
+        <td style="text-align:right">$1,600,000</td>
+        <td><a href="https://bravenewcoin.com/insights/us-marshals-announce-16-million-bitcoin-auction">US Marshals announce $1.6M Auction</a></td>
+      </tr>
+      <tr>
+        <td>22-01-2018</td>
+        <td style="text-align:right">3,813</td>
+        <td style="text-align:right">$42,000,000</td>
+        <td><a href="https://www.usmarshals.gov/assets/2018/bitcoinauction/index.html">US Marshals Announcement</a></td>
+      </tr>
+      <tr>
+        <td>05-11-2018</td>
+        <td style="text-align:right">660</td>
+        <td style="text-align:right">$4,000,000</td>
+        <td><a href="https://www.forbes.com/sites/rogeraitken/2018/10/19/u-s-marshals-set-to-auction-bitcoins-worth-4-2m-next-month/">US Marshals set to Auction bitcoins worth $4M</a></td>
+      </tr>
+      <tr>
+        <td>01-02-2020</td>
+        <td style="text-align:right">4,040</td>
+        <td style="text-align:right">$38,000,000</td>
+        <td><a href="https://www.usmarshals.gov/assets/2020/febbitcoinauction/">US Marshals Announcement</a></td>
+      </tr>
+      <tr>
+        <td>03-17-2021</td>
+        <td style="text-align:right">0.7501</td>
+        <td style="text-align:right">$53,104</td>
+        <td><a href="https://archive.is/nrchD">GSA Auction</a></td>
+      </tr>
+      <tr>
+        <td>07-01-2021</td>
+        <td style="text-align:right">500</td>
+        <td style="text-align:right">$19,200,000</td>
+        <td><a href="https://archive.is/pqs54">Ohio DOJ Auction</a></td>
+      </tr>
+      <tr>
+        <td>03-14-2023</td>
+        <td style="text-align:right">9,861</td>
+        <td style="text-align:right">$215,700,000</td>
+        <td><a href="https://archive.is/MUZfP">Coinbase Sale of BTC seized from Silk Road hacker</a></td>
+      </tr>
+    </table>
+
+    <p style="width:860px;margin:auto;font-size:20px">
+      <br/>
+      Total BTC sold: <span id="total_btc">195,591.7501</span><br/>
+      Total USD gained from sales: $<span id="usd_sales">386,393,104</span><br/>
+      Current USD value of all sold BTC: <span id="total_usd">???</span><br/>
+      Potential USD gains missed: <span id="gains_missed">???</span><br/>
+      <br/>
+    </p>
+
+    <h2 style="width:860px;margin:0 auto 10px">Seized Bitcoin Still Held</h2>
+    <table class="compatibility" style="width:860px;margin:auto">
+      <tr>
+        <th>Date Seized</th>
+        <th style="text-align:right">BTC Seized</th>
+        <th>News Article</th>
+      </tr>
+      <tr>
+        <td>11-2020</td>
+        <td style="text-align:right">69,370</td>
+        <td><a href="https://storage.courtlistener.com/recap/gov.uscourts.cand.368440/gov.uscourts.cand.368440.1.0.pdf">Silk Road hacker &quot;Individual X&quot; seizure</a></td>
+      </tr>
+      <tr>
+        <td>08-2021</td>
+        <td style="text-align:right">4,400</td>
+        <td><a href="https://www.justice.gov/opa/pr/government-forfeits-over-400m-assets-tied-helix-darknet-cryptocurrency-mixer">Helix darknet mixer forfeiture</a></td>
+      </tr>
+      <tr>
+        <td>11-2021</td>
+        <td style="text-align:right">41,819</td>
+        <td><a href="https://www.justice.gov/usao-sdny/pr/us-attorney-announces-historic-336-billion-cryptocurrency-seizure-and-conviction">Silk Road theft, James Zhong (51,680 seized, 9,861 sold in 2023)</a></td>
+      </tr>
+      <tr>
+        <td>2022</td>
+        <td style="text-align:right">94,636</td>
+        <td><a href="https://www.coindesk.com/policy/2022/02/08/us-officials-seize-bitcoin-from-2016-bitfinex-hack/">2016 Bitfinex hack seizure</a></td>
+      </tr>
+      <tr>
+        <td>2022</td>
+        <td style="text-align:right">2,814</td>
+        <td><a href="https://www.justice.gov/usao-ndil/pr/co-creator-dark-web-marketplace-sentenced-40-years-federal-prison">Empire Market forfeiture</a></td>
+      </tr>
+      <tr>
+        <td>01-2024</td>
+        <td style="text-align:right">2,933</td>
+        <td><a href="https://decrypt.co/214309/us-sell-117-million-bitcoin-seized-silk-road-drug-trafficker">XANAXMAN darknet vendor forfeiture</a></td>
+      </tr>
+      <tr>
+        <td>11-2024</td>
+        <td style="text-align:right">1,354</td>
+        <td><a href="https://www.justice.gov/usao-dc/pr/operator-bitcoin-fog-sentenced-more-12-years-prison-running-notorious-darknet">Bitcoin Fog mixer forfeiture</a></td>
+      </tr>
+      <tr>
+        <td>10-2025</td>
+        <td style="text-align:right">127,271</td>
+        <td><a href="https://www.justice.gov/opa/pr/chairman-prince-group-indicted-operating-cambodian-forced-labor-scam-compounds-engaged">Prince Group scam seizure</a></td>
+      </tr>
+    </table>
+    <br/>
+
+    <p style="width:860px;margin:auto;font-size:20px">
+      Total BTC seized but not yet sold: <span id="held_btc">354,458</span><br/>
+      Current USD value of held BTC: <span id="held_usd">???</span><br/>
+      <br/>
+    </p>
+
+    <p style="width:860px;margin:auto;font-size:16px">
+      Executive Order 14233, <a href="https://www.federalregister.gov/documents/2025/03/11/2025-03992/establishment-of-the-strategic-bitcoin-reserve-and-united-states-digital-asset-stockpile">Establishment of the Strategic Bitcoin Reserve and United States Digital Asset Stockpile</a>, signed March 6, 2025, directs that bitcoin forfeited by the federal government be held in the Strategic Bitcoin Reserve rather than sold, with only narrow exceptions (such as returning assets to identifiable victims or use for law enforcement operations). This ended the long-standing practice of auctioning seized bitcoin, which is why no government bitcoin sales are recorded after March 2023.
+    </p>
   </body>
 </html>
